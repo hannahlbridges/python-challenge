@@ -32,16 +32,19 @@ with open(resultspath, 'r') as csvfile:
         elif vote[2] == "O'Tooley":
             otooley.append(vote[0])
 
-print(len(khan), len(correy), len(li), len(otooley))
-
 with open(resultspath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     next(csvreader)        
     total_votes = sum(1 for row in csvreader)
+
+percent_khan = round(len(khan) / total_votes * 100, 3)
+percent_correy = round(len(correy) / total_votes * 100, 3)
+percent_li = round(len(li) / total_votes * 100, 3)
+percent_otooley = round(len(otooley) / total_votes * 100, 3)
     
 print(f'Total Votes: {total_votes}')
-print(f'{candidates[0]}:')
-print(f'{candidates[1]}:')
-print(f'{candidates[2]}:')
-print(f'{candidates[3]}:')
+print(f'{candidates[0]}: {percent_khan}%')
+print(f'{candidates[1]}: {percent_correy}%')
+print(f'{candidates[2]}: {percent_li}%')
+print(f'{candidates[3]}: {percent_otooley}%')
     
