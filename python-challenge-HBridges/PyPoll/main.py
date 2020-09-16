@@ -7,12 +7,13 @@ with open(resultspath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     next(csvreader)
     candidates = []
-    khan = []
-    correy = []
-    li = []
-    otooley = []
     for vote in csvreader:
         candidates.append(vote[2]) if vote[2] not in candidates else candidates
+
+khan = []
+correy = []
+li = []
+otooley = []
 
 with open(resultspath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
