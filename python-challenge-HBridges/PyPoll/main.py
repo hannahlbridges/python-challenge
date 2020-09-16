@@ -1,12 +1,7 @@
 import csv
 import os
 
-print('Election Results')
-print('-----------------------------')
-
 resultspath = 'Resources/election_data.csv'
-
-
 
 with open(resultspath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -51,8 +46,11 @@ elif most_votes == len(li):
     winner = "Li"
 elif most_votes == len(otooley):
     winner = "O'Tooley"
-    
+
+print('Election Results')
+print('---------------------------------------')    
 print(f'Total Votes: {total_votes}')
+print('---------------------------------------')
 print(f'{candidates[0]}: {percent_khan}% ({len(khan)})')
 print(f'{candidates[1]}: {percent_correy}% ({len(correy)})')
 print(f'{candidates[2]}: {percent_li}% ({len(li)})')
@@ -60,3 +58,19 @@ print(f'{candidates[3]}: {percent_otooley}% ({len(otooley)})')
 print('---------------------------------------')
 print(f'Winner: {winner}')  
 print('---------------------------------------')
+
+analysispath = 'Analysis/Analysis.txt'
+
+with open(analysispath, 'w') as csvfile:
+    csvwriter = csv.writer(csvfile, delimiter= ' ')
+    csvwriter.writerow(['Election Results'])
+    csvwriter.writerow(['---------------------------------------'])
+    csvwriter.writerow([f'Total Votes: {total_votes}'])
+    csvwriter.writerow(['---------------------------------------'])
+    csvwriter.writerow([f'{candidates[0]}: {percent_khan}% ({len(khan)})'])
+    csvwriter.writerow([f'{candidates[1]}: {percent_correy}% ({len(correy)})'])
+    csvwriter.writerow([f'{candidates[2]}: {percent_li}% ({len(li)})'])
+    csvwriter.writerow([f'{candidates[3]}: {percent_otooley}% ({len(otooley)})'])
+    csvwriter.writerow(['---------------------------------------'])
+    csvwriter.writerow([f'Winner: {winner}'])
+    csvwriter.writerow(['---------------------------------------'])
