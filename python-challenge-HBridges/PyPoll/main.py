@@ -62,7 +62,7 @@ print('---------------------------------------')
 
 analysispath = 'Analysis/Analysis.txt'
 
-with open(analysispath, 'w') as csvfile:
+with open(analysispath, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter= ' ')
     csvwriter.writerow(['Election Results'])
     csvwriter.writerow(['---------------------------------------'])

@@ -52,7 +52,7 @@ with open(recordspath, 'r') as csvfile:
     print(f'Greatest Increase in Profits: {max_row[0]} (${max_num})')
     print(f'Greatest Decrease in Profits: {min_row[0]} (${min_num})')
 
-with open(analysispath, 'w') as csvfile:
+with open(analysispath, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter= ' ')
     csvwriter.writerow(['Financial Analysis'])
     csvwriter.writerow(['----------------------------------------'])
