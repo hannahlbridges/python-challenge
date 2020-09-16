@@ -2,7 +2,7 @@ import csv
 import os
 
 print('Election Results')
-print('-----------------------------------------')
+print('-----------------------------')
 
 resultspath = 'Resources/election_data.csv'
 
@@ -41,10 +41,22 @@ percent_khan = round(len(khan) / total_votes * 100, 3)
 percent_correy = round(len(correy) / total_votes * 100, 3)
 percent_li = round(len(li) / total_votes * 100, 3)
 percent_otooley = round(len(otooley) / total_votes * 100, 3)
+
+most_votes = max(len(khan), len(correy), len(li), len(otooley))
+if most_votes == len(khan):
+    winner = "Khan"
+elif most_votes == len(correy):
+    winner = "Coorey"
+elif most_votes == len(li):
+    winner = "Li"
+elif most_votes == len(otooley):
+    winner = "O'Tooley"
     
 print(f'Total Votes: {total_votes}')
-print(f'{candidates[0]}: {percent_khan}%')
-print(f'{candidates[1]}: {percent_correy}%')
-print(f'{candidates[2]}: {percent_li}%')
-print(f'{candidates[3]}: {percent_otooley}%')
-    
+print(f'{candidates[0]}: {percent_khan}% ({len(khan)})')
+print(f'{candidates[1]}: {percent_correy}% ({len(correy)})')
+print(f'{candidates[2]}: {percent_li}% ({len(li)})')
+print(f'{candidates[3]}: {percent_otooley}% ({len(otooley)})')
+print('---------------------------------------')
+print(f'Winner: {winner}')  
+print('---------------------------------------')
