@@ -2,6 +2,7 @@ import os
 import csv
 
 recordspath = 'Resources/budget_data.csv'
+analysispath = 'Analysis/Analysis.txt'
 print('Financial Analysis')
 print('-----------------------------------------')
 
@@ -45,22 +46,21 @@ min_index = monthly_change.index(min_num) + 1
 with open(recordspath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter= ',')
     next(csvreader)
-    for row in csvreader:
-        #if int(row[1]) == max_num: 
-            #print(f'Greatest Increase in Profits: {row[0]} (${row[1]})')
-        #if int(row[1]) == min_num:
-            #print(f'Greatest Decrease in Profits: {row[0]} (${row[1]})')
+    rows = list(csvreader)
+    max_row = rows[max_index]
+    min_row = rows[min_index]
+    print(f'Greatest Increase in Profits: {max_row[0]} (${max_num})')
+    print(f'Greatest Decrease in Profits: {min_row[0]} (${min_num})')
 
-analysispath = 'Analysis/Analysis.txt'
 with open(analysispath, 'w') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter= ' ')
     csvwriter.writerow(['Financial Analysis'])
     csvwriter.writerow(['----------------------------------------'])
     csvwriter.writerow([f'Total Months: {months}'])
     csvwriter.writerow([f'Total: ${sum(net)}'])
-    csvwriter.writerow([f'Average Change: ${round(sum(net)/len(net), 2)}'])
-    csvwriter.writerow([f'Greatest Increase in Profits: {row[0]} (${row[1]})'])
-    csvwriter.writerow([f'Greatest Decrease in Profits: {row[0]} (${row[1]})'])
+    csvwriter.writerow([f'Average Change: ${round(average_change, 2)}'])
+    csvwriter.writerow([f'Greatest Increase in Profits: {max_row[0]} (${max_num})'])
+    csvwriter.writerow([f'Greatest Decrease in Profits: {min_row[0]} (${min_num})'])
 
         
 
