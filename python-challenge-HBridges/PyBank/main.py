@@ -3,6 +3,7 @@ import csv
 
 recordspath = 'Resources/budget_data.csv'
 analysispath = 'Analysis/Analysis.txt'
+
 print('Financial Analysis')
 print('-----------------------------------------')
 
@@ -62,7 +63,12 @@ with open(analysispath, 'w', newline='') as csvfile:
     csvwriter.writerow([f'Greatest Increase in Profits: {max_row[0]} (${max_num})'])
     csvwriter.writerow([f'Greatest Decrease in Profits: {min_row[0]} (${min_num})'])
 
-        
+text = open(analysispath, "r")
+text = ''.join([i for i in text]) \
+    .replace('"', "")
+x = open(analysispath,"w")
+x.writelines(text)
+x.close()       
 
 
 

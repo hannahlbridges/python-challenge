@@ -75,3 +75,10 @@ with open(analysispath, 'w', newline='') as csvfile:
     csvwriter.writerow(['---------------------------------------'])
     csvwriter.writerow([f'Winner: {winner}'])
     csvwriter.writerow(['---------------------------------------'])
+
+text = open(analysispath, "r")
+text = ''.join([i for i in text]) \
+    .replace('"', "")
+x = open(analysispath,"w")
+x.writelines(text)
+x.close()  
