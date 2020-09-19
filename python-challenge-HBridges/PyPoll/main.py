@@ -3,12 +3,16 @@ import os
 
 resultspath = 'Resources/election_data.csv'
 
+# List of Unique Candidates
+
 with open(resultspath, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     next(csvreader)
     candidates = []
     for vote in csvreader:
         candidates.append(vote[2]) if vote[2] not in candidates else candidates
+
+# Lists of Votes Per Candidate
 
 khan = []
 correy = []
@@ -28,15 +32,16 @@ with open(resultspath, 'r') as csvfile:
         elif vote[2] == "O'Tooley":
             otooley.append(vote[0])
 
-with open(resultspath, 'r') as csvfile:
-    csvreader = csv.reader(csvfile, delimiter=',')
-    next(csvreader)        
-    total_votes = sum(1 for row in csvreader)
+# Total Votes and Percentage of Votes per Candidate
+
+total_votes = len(khan) + len(correy) + len(li) + len(otooley)
 
 percent_khan = round(len(khan) / total_votes * 100, 3)
 percent_correy = round(len(correy) / total_votes * 100, 3)
 percent_li = round(len(li) / total_votes * 100, 3)
 percent_otooley = round(len(otooley) / total_votes * 100, 3)
+
+# Winning Candidate
 
 most_votes = max(len(khan), len(correy), len(li), len(otooley))
 if most_votes == len(khan):
@@ -60,6 +65,8 @@ print('---------------------------------------')
 print(f'Winner: {winner}')  
 print('---------------------------------------')
 
+# Write Analysis to CSV File
+
 analysispath = 'Analysis/Analysis.txt'
 
 with open(analysispath, 'w', newline='') as csvfile:
@@ -75,6 +82,8 @@ with open(analysispath, 'w', newline='') as csvfile:
     csvwriter.writerow(['---------------------------------------'])
     csvwriter.writerow([f'Winner: {winner}'])
     csvwriter.writerow(['---------------------------------------'])
+
+# Remove Quotations From CSV File
 
 text = open(analysispath, "r")
 text = ''.join([i for i in text]) \
